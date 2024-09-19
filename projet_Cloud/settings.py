@@ -39,13 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app_Admin.apps.AppAdminConfig',
+    'app_admin.apps.AppAdminConfig',
     'app_Contact.apps.AppContactConfig',
     'app_News.apps.AppNewsConfig',
     'app_Inscription.apps.AppInscriptionConfig',
 
     'app_Public.apps.AppPublicConfig',
     'app_User.apps.AppUserConfig',
+
+
 
 ]
 
