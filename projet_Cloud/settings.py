@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # il faut toujours referencier l'app
-    # comme tu l'as definit comme l'erreur app_admin
+    # comme tu l'as definit comme l'erreur app_Admin
     'app_Admin.apps.AppAdminConfig',
     'app_Contact.apps.AppContactConfig',
     'app_News.apps.AppNewsConfig',

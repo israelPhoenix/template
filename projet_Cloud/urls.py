@@ -13,4 +13,5 @@ urlpatterns = [
     #  selon les apps definit dans le projet
     path("dashboard-admin/", include("app_Admin.urls")),
 
+
 ]
