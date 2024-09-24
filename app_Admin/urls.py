@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import caisse_dashboard, dashboard, comptable, gestion_etudiants, login_admin, details_student, gestion_personel, prof, log_out_admin
+from .views import caisse_dashboard, dashboard, comptable, gestion_etudiants, login_admin, details_student, gestion_personel, prof, logout, profile_student
 
 
 
@@ -14,7 +14,9 @@ urlpatterns =[
         path("details_etudiant/", details_student.DetailEtudiantView.as_view(), name="details_etudiant"),
         path("gestion_personnel/", gestion_personel.PersonnelView.as_view(), name="gestion_personnel"),
         path("gestion_enseignant/", prof.ProfView.as_view(), name="enseignant"),
-        path("log_out_admin/", log_out_admin.logoutAdminView.as_view(), name="log_out"),
+        path("logout_admin/", logout.logoutAdminView.as_view(), name="logout"),
+        path("profile_etudiant/", profile_student.Profil_student.as_view(), name ="student_profil")
+
 
 
 ]

@@ -33,6 +33,11 @@ INSTALLED_APPS = [
 
     'app_Public.apps.AppPublicConfig',
     'app_User.apps.AppUserConfig',
+    'app_etudiant.apps.AppEtudiantConfig',
+    'app_cycle.apps.AppCycleConfig',
+    'app_caisse.apps.AppCaisseConfig',
+    'app_paiestudent',
+
 
 
 

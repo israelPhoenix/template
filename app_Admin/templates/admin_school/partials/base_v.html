@@ -162,98 +162,98 @@
     <!-- Page JS -->
     <script src="{% static 'template_trois/assets/js/tables-datatables-basic.js' %}"></script>
 
-    {% for message in messages  %}
-                {% if message.tags == 'success' %}
+<!--    {% for message in messages  %}-->
+<!--                {% if message.tags == 'success' %}-->
                      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-                     <script>
-                         var m = "{{ message }}";
-                         swal("Perfet !", m,"success")
-                     </script>
+<!--                     <script>-->
+<!--                         var m = "{{ message }}";-->
+<!--                         swal("Perfet !", m,"success")-->
+<!--                     </script>-->
 
-                  {% else %}
-                     <script>
-                         var m = "{{ message }}";
-                         swal("Erreur !", m,"error")
-                     </script>
-                    {% endif %}
-                {% endfor %}
+<!--                  {% else %}-->
+<!--                     <script>-->
+<!--                         var m = "{{ message }}";-->
+<!--                         swal("Erreur !", m,"error")-->
+<!--                     </script>-->
+<!--                    {% endif %}-->
+<!--                {% endfor %}-->
     <script src="{% static 'template_trois/assets/js/tables-datatables-advanced.js' %}"></script>
 
     <script src="{% static 'template_trois/assets/js/app-user-list.js' %}"></script>
 
 
-  {% for message in messages  %}
-                {% if message.tags == 'success' %}
+<!--  {% for message in messages  %}-->
+<!--                {% if message.tags == 'success' %}-->
                      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-                     <script>
-                         var m = "{{ message }}";
-                         swal("Perfet !", m,"success")
-                     </script>
+<!--                     <script>-->
+<!--                         var m = "{{ message }}";-->
+<!--                         swal("Perfet !", m,"success")-->
+<!--                     </script>-->
 
-                    {% endif %}
-                {% endfor %}
+<!--                    {% endif %}-->
+<!--                {% endfor %}-->
 
-     {% for message in messages  %}
-                {% if message.tags == 'error' %}
+<!--     {% for message in messages  %}-->
+<!--                {% if message.tags == 'error' %}-->
                      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-                     <script>
-                         var m = "{{ message }}";
-                         swal("Erreur !", m,"error")
-                     </script>
-                    {% endif %}
-                {% endfor %}
+<!--                     <script>-->
+<!--                         var m = "{{ message }}";-->
+<!--                         swal("Erreur !", m,"error")-->
+<!--                     </script>-->
+<!--                    {% endif %}-->
+<!--                {% endfor %}-->
 
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Ajoutez cette balise script après votre bouton de suppression -->
 <script>
-// Dans votre fichier JS externe (par exemple, main.js)
-function confirmDelete(element) {
-    var deleteUrl = element.getAttribute('data-delete-url');
+<!--// Dans votre fichier JS externe (par exemple, main.js)-->
+<!--function confirmDelete(element) {-->
+<!--    var deleteUrl = element.getAttribute('data-delete-url');-->
 
-    Swal.fire({
-        title: "Êtes-vous sûr de vouloir supprimer cet élément?",
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: "Oui, supprimer",
-        denyButtonText: "Non",
-        cancelButtonText: "Annuler"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // Faites une requête Ajax pour supprimer l'élément
-            fetch(deleteUrl, {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': '{{ csrf_token }}',
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                },
-            })
-            .then(response => {
-                if (response.status === 204) {
-                    Swal.fire("Supprimé!", "", "success");
+<!--    Swal.fire({-->
+<!--        title: "Êtes-vous sûr de vouloir supprimer cet élément?",-->
+<!--        showDenyButton: true,-->
+<!--        showCancelButton: true,-->
+<!--        confirmButtonText: "Oui, supprimer",-->
+<!--        denyButtonText: "Non",-->
+<!--        cancelButtonText: "Annuler"-->
+<!--    }).then((result) => {-->
+<!--        if (result.isConfirmed) {-->
+<!--            // Faites une requête Ajax pour supprimer l'élément-->
+<!--            fetch(deleteUrl, {-->
+<!--                method: 'POST',-->
+<!--                headers: {-->
+<!--                    'X-CSRFToken': '{{ csrf_token }}',-->
+<!--                    'Content-Type': 'application/json',-->
+<!--                    'Accept': 'application/json',-->
+<!--                },-->
+<!--            })-->
+<!--            .then(response => {-->
+<!--                if (response.status === 204) {-->
+<!--                    Swal.fire("Supprimé!", "", "success");-->
 
-                    // Retirez visuellement l'élément du tableau
-                    var rowToRemove = element.closest('tr');
-                    console.log('Row to remove:', rowToRemove);
-                    rowToRemove.remove();
+<!--                    // Retirez visuellement l'élément du tableau-->
+<!--                    var rowToRemove = element.closest('tr');-->
+<!--                    console.log('Row to remove:', rowToRemove);-->
+<!--                    rowToRemove.remove();-->
 
-                } else {
-                    Swal.fire("Erreur lors de la suppression", "", "error");
-                }
-            })
-            .catch(error => {
-                console.error('Erreur:', error);
-                Swal.fire("Une erreur s'est produite", "", "error");
-            });
-        } else if (result.isDenied) {
-            Swal.fire("La suppression a été annulée", "", "info");
-        }
-    });
-}
+<!--                } else {-->
+<!--                    Swal.fire("Erreur lors de la suppression", "", "error");-->
+<!--                }-->
+<!--            })-->
+<!--            .catch(error => {-->
+<!--                console.error('Erreur:', error);-->
+<!--                Swal.fire("Une erreur s'est produite", "", "error");-->
+<!--            });-->
+<!--        } else if (result.isDenied) {-->
+<!--            Swal.fire("La suppression a été annulée", "", "info");-->
+<!--        }-->
+<!--    });-->
+<!--}-->
 
 
 </script>
