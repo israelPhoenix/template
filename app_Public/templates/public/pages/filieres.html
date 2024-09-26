@@ -30,16 +30,16 @@
 					</div>
 				</div>
 			</div>
-
+{% for fil in filieres %}
 			<div class="row course_boxes">
 
 				<!-- Popular Course Item -->
 				<div class="col-lg-4 course_box">
 					<div class="card">
-						<img class="card-img-top" src="{% static 'images/course_1.jpg' %}" alt="https://unsplash.com/@kellybrito">
+						<img class="card-img-top" src="{{fil.image.url}}" alt="">
 						<div class="card-body text-center">
-							<div class="card-title"><a href="courses.html">A complete guide to design</a></div>
-							<div class="card-text">Adobe Guide, Layes, Smart Objects etc...</div>
+							<div class="card-title"><a href="courses.html">{{fil.name}}</a></div>
+							<div class="card-text">{{fil.description}}</div>
 
 
 						 <button type="button" class="comment_send_btn trans_200" data-bs-toggle="modal" data-bs-target="#editUser"><a>
@@ -50,154 +50,13 @@
 
 					</div>
 				</div>
-
-				<!-- Popular Course Item -->
-				<div class="col-lg-4 course_box">
-					<div class="card">
-						<img class="card-img-top" src="{% static 'images/course_1.jpg' %}" alt="https://unsplash.com/@cikstefan">
-						<div class="card-body text-center">
-							<div class="card-title"><a href="courses.html">Beginners guide to HTML</a></div>
-							<div class="card-text">Adobe Guide, Layes, Smart Objects etc...</div>
-						</div>
-						<div class="price_box d-flex flex-row align-items-center">
-							<div class="course_author_image">
-								<img src="images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
-							</div>
-							<div class="course_author_name">Michael Smith, <span>Author</span></div>
-							<div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Popular Course Item -->
-				<div class="col-lg-4 course_box">
-					<div class="card">
-						<img class="card-img-top" src="{% static 'images/course_1.jpg' %}" alt="https://unsplash.com/@dsmacinnes">
-						<div class="card-body text-center">
-							<div class="card-title"><a href="courses.html">Advanced Photoshop</a></div>
-							<div class="card-text">Adobe Guide, Layes, Smart Objects etc...</div>
-						</div>
-						<div class="price_box d-flex flex-row align-items-center">
-							<div class="course_author_image">
-								<img src="images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
-							</div>
-							<div class="course_author_name">Michael Smith, <span>Author</span></div>
-							<div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Popular Course Item -->
-				<div class="col-lg-4 course_box">
-					<div class="card">
-						<img class="card-img-top" src="{% static 'images/course_1.jpg' %}" alt="https://unsplash.com/@kellitungay">
-						<div class="card-body text-center">
-							<div class="card-title"><a href="courses.html">A complete guide to design</a></div>
-							<div class="card-text">Adobe Guide, Layes, Smart Objects etc...</div>
-						</div>
-						<div class="price_box d-flex flex-row align-items-center">
-							<div class="course_author_image">
-								<img src="images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
-							</div>
-							<div class="course_author_name">Michael Smith, <span>Author</span></div>
-							<div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Popular Course Item -->
-				<div class="col-lg-4 course_box">
-					<div class="card">
-						<img class="card-img-top" src="{% static 'images/course_1.jpg' %}" alt="https://unsplash.com/@claybanks1989">
-						<div class="card-body text-center">
-							<div class="card-title"><a href="courses.html">Beginners guide to HTML</a></div>
-							<div class="card-text">Adobe Guide, Layes, Smart Objects etc...</div>
-						</div>
-						<div class="price_box d-flex flex-row align-items-center">
-							<div class="course_author_image">
-								<img src="images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
-							</div>
-							<div class="course_author_name">Michael Smith, <span>Author</span></div>
-							<div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Popular Course Item -->
-				<div class="col-lg-4 course_box">
-					<div class="card">
-						<img class="card-img-top" src="{% static 'images/course_1.jpg' %}" alt="https://unsplash.com/@element5digital">
-						<div class="card-body text-center">
-							<div class="card-title"><a href="courses.html">Advanced Photoshop</a></div>
-							<div class="card-text">Adobe Guide, Layes, Smart Objects etc...</div>
-						</div>
-						<div class="price_box d-flex flex-row align-items-center">
-							<div class="course_author_image">
-								<img src="images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
-							</div>
-							<div class="course_author_name">Michael Smith, <span>Author</span></div>
-							<div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Popular Course Item -->
-				<div class="col-lg-4 course_box">
-					<div class="card">
-						<img class="card-img-top" src="{% static 'images/course_1.jpg' %}" alt="https://unsplash.com/@gaellemm">
-						<div class="card-body text-center">
-							<div class="card-title"><a href="courses.html">soins generaux</a></div>
-							<div class="card-text">Adobe Guide, Layes, Smart Objects etc...</div>
-						</div>
-						<div class="price_box d-flex flex-row align-items-center">
-							<div class="course_author_image">
-								<img src="images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
-							</div>
-							<div class="course_author_name">Michael Smith, <span>Author</span></div>
-							<div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Popular Course Item -->
-				<div class="col-lg-4 course_box">
-					<div class="card">
-						<img class="card-img-top" src="{% static 'images/course_1.jpg' %}" alt="https://unsplash.com/@juanmramosjr">
-						<div class="card-body text-center">
-							<div class="card-title"><a href="courses.html">programation avancé</a></div>
-							<div class="card-text">Adobe Guide, Layes, Smart Objects etc...</div>
-						</div>
-						<div class="price_box d-flex flex-row align-items-center">
-							<div class="course_author_image">
-								<img src="images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
-							</div>
-							<div class="course_author_name">Michael Smith, <span>Author</span></div>
-							<div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Popular Course Item -->
-				<div class="col-lg-4 course_box">
-					<div class="card">
-						<img class="card-img-top" src="{% static 'images/course_1.jpg' %}" alt="https://unsplash.com/@kimberlyfarmer">
-						<div class="card-body text-center">
-							<div class="card-title"><a href="courses.html">Science infirmiere </a></div>
-							<div class="card-text">Adobe Guide, Layes, Smart Objects etc...</div>
-						</div>
-						<div class="price_box d-flex flex-row align-items-center">
-							<div class="course_author_image">
-								<img src="images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
-							</div>
-							<div class="course_author_name">Michael Smith, <span>Author</span></div>
-							<div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-						</div>
-					</div>
-				</div>
+                </div>
+                {% endfor %}
 
 
 
 				    <!-- Edit User Modal -->
+
               <div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-simple modal-edit-user">
                   <div class="modal-content p-3 p-md-5">
@@ -207,13 +66,15 @@
                         <h3 class="mb-2">FORMULAIRE D'INSCRIPTION</h3>
                         <p class="text-muted">Veuillez renseigner chaque champ svp</p>
                       </div>
+                        <form action="" method="POST">
+                    {% csrf_token %}
                       <form id="editUserForm" class="row g-3" onsubmit="return false">
                         <div class="col-12 col-md-6">
                           <label class="form-label" for="modalEditUserFirstName">Nom</label>
                           <input
                             type="text"
                             id="modalEditUserFirstName"
-                            name="modalEditUserFirstName"
+                            name="nom"
                             class="form-control"
                             placeholder="veillez saisir"
 						  required="required"/>
@@ -223,7 +84,7 @@
                           <input
                             type="text"
                             id="modalEditUserLastName"
-                            name="modalEditUserLastName"
+                            name="postnom"
                             class="form-control"
                             placeholder="veillez saisir"
 						  required="required"/>
@@ -233,7 +94,7 @@
                           <input
                             type="text"
                             id="modalEditUserName"
-                            name="modalEditUserName"
+                            name="prenom"
                             class="form-control"
                             placeholder="veillez saisir"
 						  required="required"/>
@@ -243,7 +104,7 @@
                           <input
                             type="text"
                             id="modalEditUserEmail"
-                            name="modalEditUserEmail"
+                            name="email"
                             class="form-control"
                             placeholder="i3600327@gmail.com"
 							required="required"/>
@@ -265,7 +126,7 @@
                           <input
                             type="text"
                             id="modalEditTaxID"
-                            name="modalEditTaxID"
+                            name="adresse"
                             class="form-control modal-edit-tax-id"
                             placeholder="veillez saisir"
 						  required="required"/>
@@ -277,7 +138,7 @@
                             <input
                               type="text"
                               id="modalEditUserPhone"
-                              name="modalEditUserPhone"
+                              name="phone"
                               class="form-control phone-number-mask"
                               placeholder="veillez saisir"
 							required="required"/>
@@ -306,14 +167,17 @@
                           </button>
                         </div>
                       </form>
+                        </form>
                     </div>
                   </div>
                 </div>
               </div>
+
               <!--/ Edit User Modal -->
 
-			</div>
+
 		</div>
+
 	</div>
 
 {% endblock content %}

@@ -2,17 +2,26 @@ from django.db import models
 
 # Create your models here.
 class Cycle(models.Model):
-    nom = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    def __str__(self):
+        return self.name
+
+class Promotion(models.Model):
+    name = models.CharField(max_length=100,null=True, blank=True)
+    cycle = models.ForeignKey(Cycle, null=False, on_delete=models.CASCADE, blank=True)
+
+    def __str__(self):
+        return self.name
 class Filiere(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=255)
-    image = models.ImageField(upload_to="service_images/", null=True, blank=True)
+    image = models.ImageField(upload_to="img/", null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    cycle = models.ForeignKey(Cycle, null=False, on_delete=models.CASCADE)
+    promotions = models.ForeignKey(Promotion, null=False, on_delete=models.CASCADE)
 
-class Promotion(models.Model):
-    name = models.CharField(max_length=100)
-    cycle = models.ForeignKey(Cycle, null=False, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
+
 
 
 

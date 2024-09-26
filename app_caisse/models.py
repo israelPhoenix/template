@@ -1,5 +1,6 @@
 from django.db import models
 from app_paiestudent.models import paiement
+from app_User.models import TimeStampedModel
 
 # Create your models here.
 
