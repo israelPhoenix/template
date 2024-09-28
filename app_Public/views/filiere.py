@@ -5,8 +5,8 @@ from django.shortcuts import render
 
 class FiliereView(TemplateView):
     template_name = "public/pages/filieres.html"
-    model = Filiere
 
+    model = Filiere
     def get(self, request):
         filieres = Filiere.objects.all()
 
@@ -20,21 +20,22 @@ class FiliereView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         # Récupère l'objet Service en fonction de la clé primaire (pk) fournie dans l'URL
-        filieres = Filiere.objects.all()
+        filieres = self.get_object()
         if request.method == 'POST':
             # Crée un nouvel objet ServiceContact avec les données soumises
-            inscriptions = Inscription(
-                filiere =filieres,  # Associe le contact au service
-                nom =request.POST.get('nom'),  # Récupère le nom du formulaire
+            inscription = Inscription(
+                filiere = filieres,  # Associe la filiere à l'inscription
+                name =request.POST.get('nom'),  # Récupère le nom du formulaire
                 postnom = request.POST.get('postnom'),  # Récupère le nom du formulaire
                 prenom = request.POST.get('postnom'),
                 adresse =request.POST.get('adresse'),
                 email=request.POST.get('email'),  # Récupère l'email du formulaire
                 phone_number =request.POST.get('phone'),  # Récupère le numéro de téléphone du formulaire
                 sexe = request.POST.get('sexe'),  # Récupère le message du formulaire
+                promotion = request.POST.get('promotion'),
             )
             # Sauvegarde le nouvel objet ServiceContact dans la base de données
-            inscriptions.save()
+            inscription.save()
 
             # Rend le template avec un indicateur de succès
 

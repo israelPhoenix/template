@@ -30,13 +30,13 @@
 					</div>
 				</div>
 			</div>
-{% for fil in filieres %}
-			<div class="row course_boxes">
 
+			<div class="row course_boxes">
+{% for fil in filieres %}
 				<!-- Popular Course Item -->
 				<div class="col-lg-4 course_box">
 					<div class="card">
-						<img class="card-img-top" src="{{fil.image.url}}" alt="">
+						<img class="card-img-top" src="{{ fil.image.url }}" alt="">
 						<div class="card-body text-center">
 							<div class="card-title"><a href="courses.html">{{fil.name}}</a></div>
 							<div class="card-text">{{fil.description}}</div>
@@ -50,8 +50,9 @@
 
 					</div>
 				</div>
-                </div>
                 {% endfor %}
+                </div>
+
 
 
 

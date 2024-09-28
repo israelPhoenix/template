@@ -1,16 +1,19 @@
+import uuid
 from django.db import models
+from app_etudiant.models import Etudiant
 from app_cycle.models import Promotion
 from app_cycle.models import Cycle
-from django.urls import reverse
+from app_cycle.models import Filiere
 from app_User.models import TimeStampedModel
-from django.utils import timezone
+
+
 # Create your models here.
 
 class Inscription(TimeStampedModel):
-
-    name = models.CharField(max_length=100,null=True, blank=True)
+    filiere = models.ForeignKey(Filiere, null=False, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, null=True, blank=True)
     postnom = models.CharField(max_length=100, null=True, blank=True)
-    prenom= models.CharField(max_length=100, null=True, blank=True)
+    prenom = models.CharField(max_length=100, null=True, blank=True)
     adresse = models.CharField(max_length=100, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     genre = models.CharField(max_length=10, choices=[
@@ -21,16 +24,6 @@ class Inscription(TimeStampedModel):
     promotion = models.ForeignKey(Promotion, null=False, on_delete=models.CASCADE)
     cycle = models.ForeignKey(Cycle, null=False, on_delete=models.CASCADE)
 
+
     def __str__(self):
         return self.name
-
-
-
-
-
-
-
-
-
-
-
