@@ -4,11 +4,11 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from app_Public import forms
+# from app_Public import forms
 
 class Login(TemplateView):
     template_name= 'public/pages/login.html'
-    form_class = forms.LoginForm
+    # form_class = forms.LoginForm
 
     def get(self, request):
         form = self.form_class()
