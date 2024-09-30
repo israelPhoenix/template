@@ -1,184 +1,182 @@
 {% extends 'public/partials/base.html' %}
 {% load static %}
+
 <!-- title -->
 {% block title %}
-<title>filieres</title>
+<title>Filières</title>
 {% endblock  %}
-<!--end title -->
 
 <!-- content -->
 {% block content %}
 
-
-	<div class="home">
-		<div class="home_background_container prlx_parent">
-			<div class="home_background prlx" style="background-image:url({% static 'images/courses_background.jpg' %})"></div>
-		</div>
-		<div class="home_content">
-			<h1>les filières disponibles</h1>
-		</div>
+<div class="home">
+	<div class="home_background_container prlx_parent">
+		<div class="home_background prlx" style="background-image:url({% static 'images/courses_background.jpg' %})"></div>
 	</div>
 
-	<!-- Popular -->
 
-	<div class="popular page_section">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="section_title text-center">
-						<h1>Filiers disponibles</h1>
+	<div class="home_content">
+		<h1>Les filières disponibles</h1>
+	</div>
+</div>
+
+<!-- Section pour les filières disponibles -->
+<div class="popular page_section">
+	<div class="container">
+			{% if success_message %}
+<div class="alert alert-success">
+    {{ success_message }}
+</div>
+{% endif %}
+		<div class="row">
+			<div class="col">
+				<div class="section_title text-center">
+					<h1>Filières disponibles</h1>
+				</div>
+			</div>
+		</div>
+
+		<!-- Boucle pour afficher chaque filière -->
+		<div class="row course_boxes">
+			{% for fil in filieres %}
+			<!-- Élément d'une filière -->
+			<div class="col-lg-4 course_box">
+				<div class="card">
+					<img class="card-img-top" src="{{ fil.image.url }}" alt="">
+					<div class="card-body text-center">
+						<div class="card-title"><a href="#">{{ fil.name }}</a></div>
+						<div class="card-text">{{ fil.description }}</div>
+
+						<!-- Bouton pour ouvrir le modal d'inscription -->
+						<button type="button" class="comment_send_btn trans_200"
+							data-bs-toggle="modal"
+							data-bs-target="#editUser"
+							data-filiere-id="{{ fil.id }}">
+							<span class="me-2">S'inscrire</span>
+						</button>
 					</div>
 				</div>
 			</div>
+			{% endfor %}
+		</div>
 
-			<div class="row course_boxes">
-{% for fil in filieres %}
-				<!-- Popular Course Item -->
-				<div class="col-lg-4 course_box">
-					<div class="card">
-						<img class="card-img-top" src="{{ fil.image.url }}" alt="">
-						<div class="card-body text-center">
-							<div class="card-title"><a href="courses.html">{{fil.name}}</a></div>
-							<div class="card-text">{{fil.description}}</div>
+		<!-- Modal pour l'inscription d'un utilisateur -->
+		<div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-simple modal-edit-user">
+				<div class="modal-content p-3 p-md-5">
+					<div class="modal-body">
+						<!-- Bouton pour fermer le modal -->
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						<div class="text-center mb-4">
+							<h3 class="mb-2">FORMULAIRE D'INSCRIPTION</h3>
+							<p class="text-muted">Veuillez renseigner chaque champ svp</p>
+						</div>
+						<!-- Formulaire d'inscription -->
+<form method="POST">
+    {% csrf_token %}
+    <div class="row g-3">
+        <!-- Ajout du champ pour sélectionner le cycle -->
+        <div class="col-12 col-md-6">
+            <label class="form-label" for="cycle">Cycle <span class="text-danger">*</span></label>
+            <select id="cycle" name="cycle" class="form-control" required>
+                <option value="" disabled selected>Choisissez un cycle</option>
+				<!--				iterer sur la Cycle -->
+                {% for cycle in cycles %}
+				<!--				dans value tu mets  l'id value="{{ cycle.id }}" que tu vas recuperer dans le view-->
+
+                    <option value="{{ cycle.id }}">{{ cycle.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <label class="form-label" for="promotion">Promotion <span class="text-danger">*</span></label>
+            <select id="promotion" name="promotion" class="form-control" required>
+                <option value="" disabled selected>Choisissez une promotion</option>
+<!--				iterer sur la promotion-->
+                {% for promotion in promotions %}
+<!--				dans value tu mets  l'id value="{{ promotion.id }}" que tu vas recuperer dans le view-->
+                    <option value="{{ promotion.id }}">{{ promotion.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <!-- Section pour les informations personnelles -->
+    <div id="editUserForm" class="row g-3 mt-3">
+        <!-- Champ caché pour stocker l'ID de la filière -->
+        <input type="hidden" id="filiere_id" name="filiere_id" value="">
+
+        <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditUserFirstName">Nom <span class="text-danger">*</span></label>
+            <input type="text" id="modalEditUserFirstName" name="nom" class="form-control" placeholder="Entrez votre nom" required />
+        </div>
+
+        <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditUserLastName">Postnom <span class="text-danger">*</span></label>
+            <input type="text" id="modalEditUserLastName" name="postnom" class="form-control" placeholder="Entrez votre postnom" required />
+        </div>
+
+        <div class="col-6">
+            <label class="form-label" for="modalEditUserName">Prénom <span class="text-danger">*</span></label>
+            <input type="text" id="modalEditUserName" name="prenom" class="form-control" placeholder="Entrez votre prénom" required />
+        </div>
+
+		 <div class="col-6 col-md-6">
+            <label class="form-label" for="modalEditUserPhone">Téléphone <span class="text-danger">*</span></label>
+            <div class="input-group">
+                <span class="input-group-text">(+)</span>
+                <input type="text" id="modalEditUserPhone" name="phone" class="form-control" placeholder="ex: 123456789" required />
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditUserEmail">Email <span class="text-danger">*</span></label>
+            <input type="email" id="modalEditUserEmail" name="email" class="form-control" placeholder="ex: vous@example.com" required />
+        </div>
+
+        <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditUserStatus">Sexe <span class="text-danger">*</span></label>
+            <select id="modalEditUserStatus" name="sexe" class="form-control" required>
+                <option value="" disabled selected>Choisissez votre sexe</option>
+                <option value="homme">Homme</option>
+                <option value="femme">Femme</option>
+            </select>
+        </div>
+
+        <div class="col-12 col-md-12">
+            <label class="form-label" for="modalEditTaxID">Adresse <span class="text-danger">*</span></label>
+			<textarea  id="modalEditTaxID" name="adresse"   class="form-control" placeholder="Entrez votre adresse" required ></textarea>
+        </div>
 
 
-						 <button type="button" class="comment_send_btn trans_200" data-bs-toggle="modal" data-bs-target="#editUser"><a>
-                                <span class="me-2">S'isncrire</span>
-                        </a>
-							 </button>
-							 </div>
+        </div>
+	<br>
+
+        <!-- Bouton de soumission du formulaire -->
+        <div class="col-12 col-md-12">
+            <button class="btn btn-primary col-12" type="submit">Soumettre</button>
+        </div>
+
+</form>
 
 					</div>
 				</div>
-                {% endfor %}
-                </div>
-
-
-
-
-				    <!-- Edit User Modal -->
-
-              <div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-simple modal-edit-user">
-                  <div class="modal-content p-3 p-md-5">
-                    <div class="modal-body">
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      <div class="text-center mb-4">
-                        <h3 class="mb-2">FORMULAIRE D'INSCRIPTION</h3>
-                        <p class="text-muted">Veuillez renseigner chaque champ svp</p>
-                      </div>
-                        <form action="" method="POST">
-                    {% csrf_token %}
-                      <form id="editUserForm" class="row g-3" onsubmit="return false">
-                        <div class="col-12 col-md-6">
-                          <label class="form-label" for="modalEditUserFirstName">Nom</label>
-                          <input
-                            type="text"
-                            id="modalEditUserFirstName"
-                            name="nom"
-                            class="form-control"
-                            placeholder="veillez saisir"
-						  required="required"/>
-                        </div>
-                        <div class="col-12 col-md-6">
-                          <label class="form-label" for="modalEditUserLastName">Postnom</label>
-                          <input
-                            type="text"
-                            id="modalEditUserLastName"
-                            name="postnom"
-                            class="form-control"
-                            placeholder="veillez saisir"
-						  required="required"/>
-                        </div>
-                        <div class="col-12">
-                          <label class="form-label" for="modalEditUserName">Prenom</label>
-                          <input
-                            type="text"
-                            id="modalEditUserName"
-                            name="prenom"
-                            class="form-control"
-                            placeholder="veillez saisir"
-						  required="required"/>
-                        </div>
-                        <div class="col-12 col-md-6">
-                          <label class="form-label" for="modalEditUserEmail">Email</label>
-                          <input
-                            type="text"
-                            id="modalEditUserEmail"
-                            name="email"
-                            class="form-control"
-                            placeholder="i3600327@gmail.com"
-							required="required"/>
-                        </div>
-                        <div class="col-12 col-md-6">
-                          <label class="form-label" for="modalEditUserStatus">Sexe</label>
-                          <select
-                            id="modalEditUserStatus"
-                            name="modalEditUserStatus"
-                            class="select2 form-select"
-                            aria-label="Default select example">
-                            <option selected>Masculin</option>
-                            <option value="1">Feminin</option>
-
-                          </select>
-                        </div>
-                        <div class="col-12 col-md-6">
-                          <label class="form-label" for="modalEditTaxID">adresse</label>
-                          <input
-                            type="text"
-                            id="modalEditTaxID"
-                            name="adresse"
-                            class="form-control modal-edit-tax-id"
-                            placeholder="veillez saisir"
-						  required="required"/>
-                        </div>
-                        <div class="col-12 col-md-6">
-                          <label class="form-label" for="modalEditUserPhone">Telephone</label>
-                          <div class="input-group">
-                            <span class="input-group-text">(+)</span>
-                            <input
-                              type="text"
-                              id="modalEditUserPhone"
-                              name="phone"
-                              class="form-control phone-number-mask"
-                              placeholder="veillez saisir"
-							required="required"/>
-                          </div>
-                        </div>
-
-
-                        <div class="col-12">
-                          <label class="switch">
-                            <input type="checkbox" class="switch-input" />
-                            <span class="switch-toggle-slider">
-                              <span class="switch-on"></span>
-                              <span class="switch-off"></span>
-                            </span>
-                            <span class="switch-label">confirmer l'incription?</span>
-                          </label>
-                        </div>
-                        <div class="col-12 text-center">
-                          <button type="submit" class="btn btn-primary me-sm-3 me-1">Valider</button>
-                          <button
-                            type="reset"
-                            class="btn btn-label-secondary"
-                            data-bs-dismiss="modal"
-                            aria-label="Close">
-                            Annuler
-                          </button>
-                        </div>
-                      </form>
-                        </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!--/ Edit User Modal -->
-
-
+			</div>
 		</div>
 
 	</div>
+</div>
 
-{% endblock content %}
+<script>
+	// Script pour mettre à jour l'ID de la filière dans le modal
+	const modals = document.querySelectorAll('[data-bs-target="#editUser"]');
+	for (const modal of modals) {
+		modal.addEventListener('click', function () {
+			const filiereId = this.getAttribute('data-filiere-id'); // Récupérer l'ID de la filière depuis le bouton
+			document.getElementById('filiere_id').value = filiereId; // Placer l'ID de la filière dans le champ caché
+		});
+	}
+</script>
+
+{% endblock %}

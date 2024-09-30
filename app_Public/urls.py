@@ -9,6 +9,11 @@ urlpatterns = [
     path("about/", about.AboutView.as_view(), name="about"),
     path("filieres/", filiere.FiliereView.as_view(), name="filieres"),
     path("news/", news.NewsView.as_view(), name="news"),
+
+    # il faut toujpur definir les urls de view qui existe et quand de meme tu
+    # le defini dans le template
+    # path("login/", login.LoginEtudiantView.as_view(), name="login")
+
     path("login/", login.Login.as_view(), name="login")
 
 ]
