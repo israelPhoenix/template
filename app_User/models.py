@@ -18,29 +18,30 @@ class TimeStampedModel(models.Model):
 class User(AbstractUser, TimeStampedModel):
     NON_DEFINI = 'non_defini'
     ADMIN = 'ADMIN'
-    DOYEN = 'DOYEN'
-    TEACHER = 'TEACHER'
+    CAISSIER = 'CAISSIER'
+    COMPTABLE = 'COMPTABLE'
     STUDENT = 'STUDENT'
+    APPARITEUR = 'APPARITEUR'
 
     ROLE_CHOICES = (
         (NON_DEFINI, 'Non défini'),
         (ADMIN, 'Admin'),
-        (DOYEN, 'Doyen'),
-        (TEACHER, 'Teacher'),
+        (CAISSIER, 'caissier'),
+        (COMPTABLE, 'comptable'),
         (STUDENT, 'Student'),
+        (APPARITEUR, 'appariteur ')
     )
     GENDER_CHOICES = [("M", "Male"), ("F", "Female")]
 
     role = models.CharField(default=NON_DEFINI, choices=ROLE_CHOICES, max_length=25, verbose_name="Role")
-    profile_photo = models.ImageField(upload_to='profile_photos', null=True, blank=True)
+    nom = models.CharField(max_length=255, null=True, blank=True)
+    email = models.CharField(max_length=255, null=True, blank=True)
     nationalite = models.CharField(max_length=255, null=True, blank=True)
     gender = models.CharField(max_length=65, choices=GENDER_CHOICES, null=True, blank=True)
     adresse = models.CharField(max_length=255, null=True, blank=True)
     telephone = models.CharField(max_length=255, null=True, blank=True)
-    rue = models.CharField(max_length=255, null=True, blank=True)
-    commune = models.CharField(max_length=255, null=True, blank=True)
-    district = models.CharField(max_length=255, null=True, blank=True)
-    province = models.CharField(max_length=255, null=True, blank=True)
+
+
 
     groups = models.ManyToManyField(
         'auth.Group',
@@ -65,15 +66,12 @@ class User(AbstractUser, TimeStampedModel):
         """
         role_map = {
             self.ADMIN: reverse('dashboard-admin'),
-            self.DOYEN: reverse('dashboard-doyen'),
-            self.TEACHER: reverse('dashboard-doyen'),
-            self.STUDENT: reverse('dashboard-doyen'),
+            self.COMPTABLE: reverse('comptable'),
+            self.CAISSIER: reverse('caisse'),
+            self.STUDENT: reverse('details_etudiant'),
+            self.APPARITEUR: reverse('gestion_etudiant'),
         }
         return role_map.get(self.role, reverse('login'))
 
-    """    @property
-    def has_company(self):
 
-        from app_entreprise.models import Compagnie
-        return Compagnie.objects.filter(admin=self).exists() """
-
+x
